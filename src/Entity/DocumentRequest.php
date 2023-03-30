@@ -2,32 +2,32 @@
 
 namespace App\Entity;
 
-use App\Repository\RequestRepository;
+use App\Repository\DocumentRequestRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RequestRepository::class)]
-class Request
+#[ORM\Entity(repositoryClass: DocumentRequestRepository::class)]
+class DocumentRequest
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'request', targetEntity: User::class)]
+    #[ORM\OneToMany(mappedBy: 'document_request', targetEntity: User::class)]
     private Collection $user_id;
 
-    #[ORM\OneToMany(mappedBy: 'request', targetEntity: Company::class)]
+    #[ORM\OneToMany(mappedBy: 'document_request', targetEntity: Company::class)]
     private Collection $company_id;
 
-    #[ORM\OneToMany(mappedBy: 'request', targetEntity: DocumentType::class)]
+    #[ORM\OneToMany(mappedBy: 'document_request', targetEntity: DocumentType::class)]
     private Collection $document_type_id;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\ManyToOne(inversedBy: 'request_id')]
+    #[ORM\ManyToOne(inversedBy: 'document_request_id')]
     private ?Tracking $tracking = null;
 
     public function __construct()
@@ -54,7 +54,7 @@ class Request
     {
         if (!$this->user_id->contains($userId)) {
             $this->user_id->add($userId);
-            $userId->setRequest($this);
+            $userId->setDocumentRequest($this);
         }
 
         return $this;
@@ -64,8 +64,8 @@ class Request
     {
         if ($this->user_id->removeElement($userId)) {
             // set the owning side to null (unless already changed)
-            if ($userId->getRequest() === $this) {
-                $userId->setRequest(null);
+            if ($userId->getDocumentRequest() === $this) {
+                $userId->setDocumentRequest(null);
             }
         }
 
@@ -84,7 +84,7 @@ class Request
     {
         if (!$this->company_id->contains($companyId)) {
             $this->company_id->add($companyId);
-            $companyId->setRequest($this);
+            $companyId->setDocumentRequest($this);
         }
 
         return $this;
@@ -94,8 +94,8 @@ class Request
     {
         if ($this->company_id->removeElement($companyId)) {
             // set the owning side to null (unless already changed)
-            if ($companyId->getRequest() === $this) {
-                $companyId->setRequest(null);
+            if ($companyId->getDocumentRequest() === $this) {
+                $companyId->setDocumentRequest(null);
             }
         }
 
@@ -114,7 +114,7 @@ class Request
     {
         if (!$this->document_type_id->contains($documentTypeId)) {
             $this->document_type_id->add($documentTypeId);
-            $documentTypeId->setRequest($this);
+            $documentTypeId->setDocumentRequest($this);
         }
 
         return $this;
@@ -124,8 +124,8 @@ class Request
     {
         if ($this->document_type_id->removeElement($documentTypeId)) {
             // set the owning side to null (unless already changed)
-            if ($documentTypeId->getRequest() === $this) {
-                $documentTypeId->setRequest(null);
+            if ($documentTypeId->getDocumentRequest() === $this) {
+                $documentTypeId->setDocumentRequest(null);
             }
         }
 

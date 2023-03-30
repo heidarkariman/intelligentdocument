@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Request;
+use App\Entity\DocumentRequest;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Request>
+ * @extends ServiceEntityRepository<DocumentRequest>
  *
- * @method Request|null find($id, $lockMode = null, $lockVersion = null)
- * @method Request|null findOneBy(array $criteria, array $orderBy = null)
- * @method Request[]    findAll()
- * @method Request[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method DocumentRequest|null find($id, $lockMode = null, $lockVersion = null)
+ * @method DocumentRequest|null findOneBy(array $criteria, array $orderBy = null)
+ * @method DocumentRequest[]    findAll()
+ * @method DocumentRequest[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RequestRepository extends ServiceEntityRepository
+class DocumentRequestRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Request::class);
+        parent::__construct($registry, DocumentRequest::class);
     }
 
-    public function save(Request $entity, bool $flush = false): void
+    public function save(DocumentRequest $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class RequestRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Request $entity, bool $flush = false): void
+    public function remove(DocumentRequest $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

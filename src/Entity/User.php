@@ -40,10 +40,10 @@ class User
     private ?Project $project = null;
 
     #[ORM\ManyToOne(inversedBy: 'user_id')]
-    private ?Form $form = null;
+    private ?FormTemplate $form_template = null;
 
     #[ORM\ManyToOne(inversedBy: 'user_id')]
-    private ?Request $request = null;
+    private ?DocumentRequest $document_request = null;
 
     public function getId(): ?int
     {
@@ -146,26 +146,26 @@ class User
         return $this;
     }
 
-    public function getForm(): ?Form
+    public function getFormTemplate(): ?FormTemplate
     {
-        return $this->form;
+        return $this->form_template;
     }
 
-    public function setForm(?Form $form): self
+    public function setFormTemplate(?FormTemplate $form_template): self
     {
-        $this->form = $form;
+        $this->form_template = $form_template;
 
         return $this;
     }
 
-    public function getRequest(): ?Request
+    public function getDocumentRequest(): ?DocumentRequest
     {
-        return $this->request;
+        return $this->document_request;
     }
 
-    public function setRequest(?Request $request): self
+    public function setDocumentRequest(?DocumentRequest $document_request): self
     {
-        $this->request = $request;
+        $this->document_request = $document_request;
 
         return $this;
     }

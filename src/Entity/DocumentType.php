@@ -20,7 +20,7 @@ class DocumentType
     private ?Document $document = null;
 
     #[ORM\ManyToOne(inversedBy: 'document_type_id')]
-    private ?Request $request = null;
+    private ?DocumentRequest $document_request = null;
 
     public function getId(): ?int
     {
@@ -51,14 +51,14 @@ class DocumentType
         return $this;
     }
 
-    public function getRequest(): ?Request
+    public function getDocumentRequest(): ?DocumentRequest
     {
-        return $this->request;
+        return $this->document_request;
     }
 
-    public function setRequest(?Request $request): self
+    public function setDocumentRequest(?DocumentRequest $document_request): self
     {
-        $this->request = $request;
+        $this->document_request = $document_request;
 
         return $this;
     }

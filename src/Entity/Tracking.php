@@ -15,8 +15,8 @@ class Tracking
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'tracking', targetEntity: Request::class)]
-    private Collection $request_id;
+    #[ORM\OneToMany(mappedBy: 'tracking', targetEntity: DocumentRequest::class)]
+    private Collection $document_request_id;
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
@@ -26,7 +26,7 @@ class Tracking
 
     public function __construct()
     {
-        $this->request_id = new ArrayCollection();
+        $this->document_request_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -35,29 +35,29 @@ class Tracking
     }
 
     /**
-     * @return Collection<int, Request>
+     * @return Collection<int, DocumentRequest>
      */
-    public function getRequestId(): Collection
+    public function getDocumentRequestId(): Collection
     {
-        return $this->request_id;
+        return $this->document_request_id;
     }
 
-    public function addRequestId(Request $requestId): self
+    public function addDocumentRequestId(DocumentRequest $document_requestId): self
     {
-        if (!$this->request_id->contains($requestId)) {
-            $this->request_id->add($requestId);
-            $requestId->setTracking($this);
+        if (!$this->document_request_id->contains($document_requestId)) {
+            $this->document_request_id->add($document_requestId);
+            $document_requestId->setTracking($this);
         }
 
         return $this;
     }
 
-    public function removeRequestId(Request $requestId): self
+    public function removeDocumentRequestId(DocumentRequest $document_requestId): self
     {
-        if ($this->request_id->removeElement($requestId)) {
+        if ($this->document_request_id->removeElement($document_requestId)) {
             // set the owning side to null (unless already changed)
-            if ($requestId->getTracking() === $this) {
-                $requestId->setTracking(null);
+            if ($document_requestId->getTracking() === $this) {
+                $document_requestId->setTracking(null);
             }
         }
 

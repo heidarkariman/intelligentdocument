@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Form;
+use App\Entity\FormTemplate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Form>
+ * @extends ServiceEntityRepository<FormTemplate>
  *
- * @method Form|null find($id, $lockMode = null, $lockVersion = null)
- * @method Form|null findOneBy(array $criteria, array $orderBy = null)
- * @method Form[]    findAll()
- * @method Form[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method FormTemplate|null find($id, $lockMode = null, $lockVersion = null)
+ * @method FormTemplate|null findOneBy(array $criteria, array $orderBy = null)
+ * @method FormTemplate[]    findAll()
+ * @method FormTemplate[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FormRepository extends ServiceEntityRepository
+class FormTemplateRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Form::class);
+        parent::__construct($registry, FormTemplate::class);
     }
 
-    public function save(Form $entity, bool $flush = false): void
+    public function save(FormTemplate $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class FormRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Form $entity, bool $flush = false): void
+    public function remove(FormTemplate $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

@@ -17,7 +17,7 @@ class FormType
     private ?string $title = null;
 
     #[ORM\ManyToOne(inversedBy: 'form_type_id')]
-    private ?Form $form = null;
+    private ?FormTemplate $form_template = null;
 
     public function getId(): ?int
     {
@@ -36,14 +36,14 @@ class FormType
         return $this;
     }
 
-    public function getForm(): ?Form
+    public function getFormTemplate(): ?FormTemplate
     {
-        return $this->form;
+        return $this->$form_template;
     }
 
-    public function setForm(?Form $form): self
+    public function setFormTemplate(?FormTemplate $form_template): self
     {
-        $this->form = $form;
+        $this->$form_template = $form_template;
 
         return $this;
     }
