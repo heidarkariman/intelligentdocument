@@ -30,6 +30,9 @@ class DocumentRequest
     #[ORM\ManyToOne(inversedBy: 'document_request_id')]
     private ?Tracking $tracking = null;
 
+    #[ORM\ManyToOne(inversedBy: 'document_request_id')]
+    private ?DocumentRequestDetail $documentRequestDetail = null;
+
     public function __construct()
     {
         $this->user_id = new ArrayCollection();
@@ -152,6 +155,18 @@ class DocumentRequest
     public function setTracking(?Tracking $tracking): self
     {
         $this->tracking = $tracking;
+
+        return $this;
+    }
+
+    public function getDocumentRequestDetail(): ?DocumentRequestDetail
+    {
+        return $this->documentRequestDetail;
+    }
+
+    public function setDocumentRequestDetail(?DocumentRequestDetail $documentRequestDetail): self
+    {
+        $this->documentRequestDetail = $documentRequestDetail;
 
         return $this;
     }
