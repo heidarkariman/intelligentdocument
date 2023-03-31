@@ -1,4 +1,15 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'class': 'row g-3'}}) }}
+    {% for field in form %}
+        <div class="col-md-6">
+            <div class="mb-3">
+                {{ form_label(field, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(field, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+    {% endfor %}
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+        <a href="#" onclick="javascript:history.back();" class="btn btn-secondary">Back</a>
+    </div>
 {{ form_end(form) }}
